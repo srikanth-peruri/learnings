@@ -1,0 +1,840 @@
+{
+	"size": 5,
+	"totalSize": 5,
+	"done": true,
+	"queryLocator": null,
+	"entityTypeName": "ApexClassMember",
+	"records": [
+		{
+			"attributes": {
+				"type": "ApexClassMember",
+				"url": "/services/data/v44.0/tooling/sobjects/ApexClassMember/4001U0000007sM6QAI"
+			},
+			"Body": "public with sharing class ExampleClass {\n \n \tpublic String greet(String argName){\n \t\tSystem.debug('Welcome : ' + argName);\n \t\treturn 'Welcome : ' + argName;\n \t}\n    \n}",
+			"ContentEntityId": "01p1U000008xiXwQAI",
+			"SymbolTable": {
+				"constructors": [],
+				"externalReferences": [],
+				"id": "01p1U000008xiXwQAI",
+				"innerClasses": [],
+				"interfaces": [],
+				"key": "01p1U000008xiXwQAI",
+				"methods": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 17,
+							"line": 3
+						},
+						"modifiers": [
+							"public"
+						],
+						"name": "greet",
+						"parameters": [
+							{
+								"name": "argName",
+								"type": "String"
+							}
+						],
+						"references": [],
+						"returnType": "String",
+						"type": null
+					}
+				],
+				"name": "ExampleClass",
+				"namespace": null,
+				"parentClass": "",
+				"properties": [],
+				"tableDeclaration": {
+					"annotations": [],
+					"location": {
+						"column": 27,
+						"line": 1
+					},
+					"modifiers": [
+						"public",
+						"with sharing"
+					],
+					"name": "ExampleClass",
+					"references": [],
+					"type": "ExampleClass"
+				},
+				"variables": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 30,
+							"line": 3
+						},
+						"modifiers": [],
+						"name": "argName",
+						"references": [
+							{
+								"column": 32,
+								"line": 4
+							},
+							{
+								"column": 26,
+								"line": 5
+							}
+						],
+						"type": "String"
+					}
+				]
+			}
+		},
+		{
+			"attributes": {
+				"type": "ApexClassMember",
+				"url": "/services/data/v44.0/tooling/sobjects/ApexClassMember/4001U0000007sM7QAI"
+			},
+			"Body": "public with sharing class ObjectInsertion{\n\n    public String insertObjectwithname(String argName){\n        Custom_Object__c co = new Custom_Object__c();\n        co.name = argName;\n        co.valid__c = true;\n        insert co;  \n        return co.id;  \n    }\n\n}",
+			"ContentEntityId": "01p1U000007lFXEQA2",
+			"SymbolTable": {
+				"constructors": [],
+				"externalReferences": [
+					{
+						"methods": [],
+						"name": "Custom_Object__c",
+						"namespace": null,
+						"references": [],
+						"variables": [
+							{
+								"name": "Name",
+								"references": [
+									{
+										"column": 12,
+										"line": 5
+									}
+								]
+							},
+							{
+								"name": "Valid__c",
+								"references": [
+									{
+										"column": 12,
+										"line": 6
+									}
+								]
+							},
+							{
+								"name": "Id",
+								"references": [
+									{
+										"column": 19,
+										"line": 8
+									}
+								]
+							}
+						]
+					}
+				],
+				"id": "01p1U000007lFXEQA2",
+				"innerClasses": [],
+				"interfaces": [],
+				"key": "01p1U000007lFXEQA2",
+				"methods": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 19,
+							"line": 3
+						},
+						"modifiers": [
+							"public"
+						],
+						"name": "insertObjectwithname",
+						"parameters": [
+							{
+								"name": "argName",
+								"type": "String"
+							}
+						],
+						"references": [],
+						"returnType": "String",
+						"type": null
+					}
+				],
+				"name": "ObjectInsertion",
+				"namespace": null,
+				"parentClass": "",
+				"properties": [],
+				"tableDeclaration": {
+					"annotations": [],
+					"location": {
+						"column": 27,
+						"line": 1
+					},
+					"modifiers": [
+						"public",
+						"with sharing"
+					],
+					"name": "ObjectInsertion",
+					"references": [],
+					"type": "ObjectInsertion"
+				},
+				"variables": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 47,
+							"line": 3
+						},
+						"modifiers": [],
+						"name": "argName",
+						"references": [
+							{
+								"column": 19,
+								"line": 5
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 26,
+							"line": 4
+						},
+						"modifiers": [],
+						"name": "co",
+						"references": [
+							{
+								"column": 16,
+								"line": 7
+							}
+						],
+						"type": "Custom_Object__c"
+					}
+				]
+			}
+		},
+		{
+			"attributes": {
+				"type": "ApexClassMember",
+				"url": "/services/data/v44.0/tooling/sobjects/ApexClassMember/4001U0000007sM8QAI"
+			},
+			"Body": "public with sharing class ApexTestCodeCoverageDetector{\n\n\npublic ApexTestCodeCoverageDetector(){\n\n}\n\npublic ApexClass[] getAllApexClasses(){\n    String query = 'select Id, Name, Body from ApexClass where NamespacePrefix = null';    \n    String uri = 'query/?q=' + query;\n    \n    String response = getHttpResponse(getHttpRequest(uri,'GET','30.0'));\n    \n    return null;\n}\n\npublic HttpRequest getHttpRequest(String argURI, String argMethod, String argVersion){\n    HttpRequest req = new HttpRequest();\n    req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());\n    req.setHeader('Content-Type', 'application/json');\n    String fullURL = URL.getOrgDomainUrl().toExternalForm() + '/services/data/v' + argVersion + '/tooling/' + argURI;\n    System.debug('Full URL generated is : ' + fullURL);\n    req.setEndpoint(fullURL);\n    req.setMethod(argMethod);\n    return req;\n}\n\npublic String getHttpResponse(HttpRequest argHttpRequest){    \n    Http h = new Http();\n    HttpResponse res = h.send(argHttpRequest);\n    system.debug(res.getBody());\n    return res.getBody();\n}\n\n}",
+			"ContentEntityId": "01p1U00000CNmxDQAT",
+			"SymbolTable": {
+				"constructors": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 8,
+							"line": 4
+						},
+						"modifiers": [
+							"public"
+						],
+						"name": "ApexTestCodeCoverageDetector",
+						"parameters": [],
+						"references": [],
+						"type": null
+					}
+				],
+				"externalReferences": [
+					{
+						"methods": [
+							{
+								"argTypes": [],
+								"isStatic": false,
+								"methodDoc": null,
+								"name": "getSessionId",
+								"parameters": [],
+								"references": [
+									{
+										"column": 57,
+										"line": 19
+									}
+								],
+								"returnType": null
+							}
+						],
+						"name": "UserInfo",
+						"namespace": "System",
+						"references": [],
+						"variables": []
+					},
+					{
+						"methods": [
+							{
+								"argTypes": [],
+								"isStatic": false,
+								"methodDoc": null,
+								"name": "toExternalForm",
+								"parameters": [],
+								"references": [
+									{
+										"column": 44,
+										"line": 21
+									}
+								],
+								"returnType": null
+							},
+							{
+								"argTypes": [],
+								"isStatic": false,
+								"methodDoc": null,
+								"name": "getOrgDomainUrl",
+								"parameters": [],
+								"references": [
+									{
+										"column": 26,
+										"line": 21
+									}
+								],
+								"returnType": null
+							}
+						],
+						"name": "Url",
+						"namespace": "System",
+						"references": [],
+						"variables": []
+					}
+				],
+				"id": "01p1U00000CNmxDQAT",
+				"innerClasses": [],
+				"interfaces": [],
+				"key": "01p1U00000CNmxDQAT",
+				"methods": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 20,
+							"line": 8
+						},
+						"modifiers": [
+							"public"
+						],
+						"name": "getAllApexClasses",
+						"parameters": [],
+						"references": [],
+						"returnType": "List",
+						"type": null
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 15,
+							"line": 28
+						},
+						"modifiers": [
+							"public"
+						],
+						"name": "getHttpResponse",
+						"parameters": [
+							{
+								"name": "argHttpRequest",
+								"type": "System.HttpRequest"
+							}
+						],
+						"references": [
+							{
+								"column": 23,
+								"line": 12
+							}
+						],
+						"returnType": "String",
+						"type": null
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 20,
+							"line": 17
+						},
+						"modifiers": [
+							"public"
+						],
+						"name": "getHttpRequest",
+						"parameters": [
+							{
+								"name": "argURI",
+								"type": "String"
+							},
+							{
+								"name": "argMethod",
+								"type": "String"
+							},
+							{
+								"name": "argVersion",
+								"type": "String"
+							}
+						],
+						"references": [
+							{
+								"column": 39,
+								"line": 12
+							}
+						],
+						"returnType": "System.HttpRequest",
+						"type": null
+					}
+				],
+				"name": "ApexTestCodeCoverageDetector",
+				"namespace": null,
+				"parentClass": "",
+				"properties": [],
+				"tableDeclaration": {
+					"annotations": [],
+					"location": {
+						"column": 27,
+						"line": 1
+					},
+					"modifiers": [
+						"public",
+						"with sharing"
+					],
+					"name": "ApexTestCodeCoverageDetector",
+					"references": [],
+					"type": "ApexTestCodeCoverageDetector"
+				},
+				"variables": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 12,
+							"line": 9
+						},
+						"modifiers": [],
+						"name": "query",
+						"references": [
+							{
+								"column": 32,
+								"line": 10
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 12,
+							"line": 10
+						},
+						"modifiers": [],
+						"name": "uri",
+						"references": [
+							{
+								"column": 54,
+								"line": 12
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 12,
+							"line": 12
+						},
+						"modifiers": [],
+						"name": "response",
+						"references": [],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 42,
+							"line": 17
+						},
+						"modifiers": [],
+						"name": "argURI",
+						"references": [
+							{
+								"column": 111,
+								"line": 21
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 57,
+							"line": 17
+						},
+						"modifiers": [],
+						"name": "argMethod",
+						"references": [
+							{
+								"column": 19,
+								"line": 24
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 75,
+							"line": 17
+						},
+						"modifiers": [],
+						"name": "argVersion",
+						"references": [
+							{
+								"column": 84,
+								"line": 21
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 17,
+							"line": 18
+						},
+						"modifiers": [],
+						"name": "req",
+						"references": [
+							{
+								"column": 12,
+								"line": 25
+							}
+						],
+						"type": "System.HttpRequest"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 12,
+							"line": 21
+						},
+						"modifiers": [],
+						"name": "fullURL",
+						"references": [
+							{
+								"column": 47,
+								"line": 22
+							},
+							{
+								"column": 21,
+								"line": 23
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 43,
+							"line": 28
+						},
+						"modifiers": [],
+						"name": "argHttpRequest",
+						"references": [
+							{
+								"column": 31,
+								"line": 30
+							}
+						],
+						"type": "System.HttpRequest"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 10,
+							"line": 29
+						},
+						"modifiers": [],
+						"name": "h",
+						"references": [],
+						"type": "System.Http"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 18,
+							"line": 30
+						},
+						"modifiers": [],
+						"name": "res",
+						"references": [],
+						"type": "System.HttpResponse"
+					}
+				]
+			}
+		},
+		{
+			"attributes": {
+				"type": "ApexClassMember",
+				"url": "/services/data/v44.0/tooling/sobjects/ApexClassMember/4001U0000007sMBQAY"
+			},
+			"Body": "@IsTest\npublic with sharing class ExampleClassTest {\n    \n    @IsTest\n    public static void testGreeting(){\n    \tExampleClass exampleClass = new ExampleClass();\n    \tString greeting = exampleClass.greet('Srikanth');\n    \tSystem.assertNotEquals(null, greeting); \n    \tSystem.assertEquals(true, greeting.contains('Srikanth')); \n    }\n    \n}",
+			"ContentEntityId": "01p1U000008yYDJQA2",
+			"SymbolTable": {
+				"constructors": [],
+				"externalReferences": [
+					{
+						"methods": [
+							{
+								"argTypes": [],
+								"isStatic": false,
+								"methodDoc": null,
+								"name": "greet",
+								"parameters": [],
+								"references": [
+									{
+										"column": 37,
+										"line": 7
+									}
+								],
+								"returnType": null
+							}
+						],
+						"name": "ExampleClass",
+						"namespace": null,
+						"references": [
+							{
+								"column": 6,
+								"line": 6
+							},
+							{
+								"column": 38,
+								"line": 6
+							}
+						],
+						"variables": [
+							{
+								"name": "exampleClass",
+								"references": [
+									{
+										"column": 24,
+										"line": 7
+									}
+								]
+							}
+						]
+					}
+				],
+				"id": "01p1U000008yYDJQA2",
+				"innerClasses": [],
+				"interfaces": [],
+				"key": "01p1U000008yYDJQA2",
+				"methods": [
+					{
+						"annotations": [
+							{
+								"name": "IsTest"
+							}
+						],
+						"location": {
+							"column": 24,
+							"line": 5
+						},
+						"modifiers": [
+							"static",
+							"public",
+							"testMethod"
+						],
+						"name": "testGreeting",
+						"parameters": [],
+						"references": [],
+						"returnType": "void",
+						"type": null
+					}
+				],
+				"name": "ExampleClassTest",
+				"namespace": null,
+				"parentClass": "",
+				"properties": [],
+				"tableDeclaration": {
+					"annotations": [
+						{
+							"name": "IsTest"
+						}
+					],
+					"location": {
+						"column": 27,
+						"line": 2
+					},
+					"modifiers": [
+						"public",
+						"testMethod",
+						"with sharing"
+					],
+					"name": "ExampleClassTest",
+					"references": [],
+					"type": "ExampleClassTest"
+				},
+				"variables": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 19,
+							"line": 6
+						},
+						"modifiers": [],
+						"name": "exampleClass",
+						"references": [],
+						"type": "ExampleClass"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 13,
+							"line": 7
+						},
+						"modifiers": [],
+						"name": "greeting",
+						"references": [
+							{
+								"column": 35,
+								"line": 8
+							}
+						],
+						"type": "String"
+					}
+				]
+			}
+		},
+		{
+			"attributes": {
+				"type": "ApexClassMember",
+				"url": "/services/data/v44.0/tooling/sobjects/ApexClassMember/4001U0000007sMCQAY"
+			},
+			"Body": "@IsTest\npublic with sharing class ObjectInsertionTest{\n\n    @IsTest\n    public static void testInsertion(){\n        ObjectInsertion oi = new ObjectInsertion();\n        String id = oi.insertObjectWithName('Srikanth');\n        Custom_Object__c co = [Select id, name , valid__C from Custom_Object__c where id = :id];\n        System.Assertequals(true, co.Name.contains('Srikanth'));\n    }\n\n}",
+			"ContentEntityId": "01p1U000007lFbRQAU",
+			"SymbolTable": {
+				"constructors": [],
+				"externalReferences": [
+					{
+						"methods": [
+							{
+								"argTypes": [],
+								"isStatic": false,
+								"methodDoc": null,
+								"name": "insertObjectwithname",
+								"parameters": [],
+								"references": [
+									{
+										"column": 24,
+										"line": 7
+									}
+								],
+								"returnType": null
+							}
+						],
+						"name": "ObjectInsertion",
+						"namespace": null,
+						"references": [
+							{
+								"column": 9,
+								"line": 6
+							},
+							{
+								"column": 34,
+								"line": 6
+							}
+						],
+						"variables": [
+							{
+								"name": "oi",
+								"references": [
+									{
+										"column": 21,
+										"line": 7
+									}
+								]
+							}
+						]
+					}
+				],
+				"id": "01p1U000007lFbRQAU",
+				"innerClasses": [],
+				"interfaces": [],
+				"key": "01p1U000007lFbRQAU",
+				"methods": [
+					{
+						"annotations": [
+							{
+								"name": "IsTest"
+							}
+						],
+						"location": {
+							"column": 24,
+							"line": 5
+						},
+						"modifiers": [
+							"static",
+							"public",
+							"testMethod"
+						],
+						"name": "testInsertion",
+						"parameters": [],
+						"references": [],
+						"returnType": "void",
+						"type": null
+					}
+				],
+				"name": "ObjectInsertionTest",
+				"namespace": null,
+				"parentClass": "",
+				"properties": [],
+				"tableDeclaration": {
+					"annotations": [
+						{
+							"name": "IsTest"
+						}
+					],
+					"location": {
+						"column": 27,
+						"line": 2
+					},
+					"modifiers": [
+						"public",
+						"testMethod",
+						"with sharing"
+					],
+					"name": "ObjectInsertionTest",
+					"references": [],
+					"type": "ObjectInsertionTest"
+				},
+				"variables": [
+					{
+						"annotations": [],
+						"location": {
+							"column": 25,
+							"line": 6
+						},
+						"modifiers": [],
+						"name": "oi",
+						"references": [],
+						"type": "ObjectInsertion"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 16,
+							"line": 7
+						},
+						"modifiers": [],
+						"name": "id",
+						"references": [
+							{
+								"column": 93,
+								"line": 8
+							}
+						],
+						"type": "String"
+					},
+					{
+						"annotations": [],
+						"location": {
+							"column": 26,
+							"line": 8
+						},
+						"modifiers": [],
+						"name": "co",
+						"references": [],
+						"type": "Custom_Object__c"
+					}
+				]
+			}
+		}
+	]
+}
